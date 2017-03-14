@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KDZ_DanceStudios"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="Dance Studios" Height="350" Width="525">
+    <Grid x:Name="DanceStudios">
+        <Menu HorizontalAlignment="Left" Height="31" Margin="0,-3,0,0" VerticalAlignment="Top" Width="517">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Добавить"/>
+                <Separator/>
+                <MenuItem Header="Удалить" Height="21"/>
+                <Separator/>
+                <MenuItem Header="Отсортировать" Height="28">
+                    <MenuItem Header="по рейтингу"/>
+                    <Separator/>
+                    <MenuItem Header="по цене"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Помощь"/>
+        </Menu>
     </Grid>
 </Window>
