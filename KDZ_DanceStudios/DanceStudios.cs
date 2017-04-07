@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KDZ_DanceStudios
 {
-    class DanceStudios
+   public class DanceStudios
     {
             private string _name;
 
@@ -15,13 +15,7 @@ namespace KDZ_DanceStudios
             get { return _name; }
             set { _name = value; }
         }
-        private string _metro;
-
-        public string Metro
-        {
-            get { return _metro; }
-            set { _metro = value; }
-        }
+       
         private int _price;
 
         public int Price
@@ -36,11 +30,27 @@ namespace KDZ_DanceStudios
             get { return _rating; }
             set { _rating = value; }
         }
+        public string Info
+        {
+            get
+            {
+                return $"{_name} - {_metro.Name} - {_metro.Address} - {_price} - {_rating} ";
+            }
+        }
 
-        public DanceStudios(string name, string metro, int price, double rating)
+        private Metro _metro;
+
+        public Metro Metro
+        {
+            get { return _metro; }
+            set { _metro = value; }
+        }
+
+
+
+        public DanceStudios (string name,int price, int rating)
         {
             _name = name;
-            _metro = metro;
             _price = price;
             _rating = rating;
         }

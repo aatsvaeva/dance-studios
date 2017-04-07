@@ -1,0 +1,20 @@
+﻿<Window x:Class="KDZ_DanceStudios.DanceStudiosWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KDZ_DanceStudios"
+        mc:Ignorable="d"
+        Title="Рейтинг танцевальных студий" Height="276.378" Width="300">
+    <Grid RenderTransformOrigin="0.771,0.551">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="113*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="listBoxStudios" HorizontalAlignment="Left" Height="157" Margin="23,28,0,0" VerticalAlignment="Top" Width="246" SelectionChanged="listBoxLecturers_SelectionChanged" Grid.ColumnSpan="3"></ListBox>
+        <Button x:Name="buttonAdd" HorizontalAlignment="Left" Margin="30,201,0,0" VerticalAlignment="Top" Width="75"  Click="buttonAdd_Click">Добавить</Button>
+        <Button x:Name="buttonRemove" HorizontalAlignment="Left" Margin="4.803,201,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="buttonRemove_Click" Grid.ColumnSpan="2" Grid.Column="1">Удалить</Button>
+
+    </Grid>
+</Window>
