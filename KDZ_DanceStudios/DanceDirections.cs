@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KDZ_DanceStudios
 {
-   public class Metro
+   public class DanceDirections
     {
         private string _name;
 
@@ -16,18 +16,19 @@ namespace KDZ_DanceStudios
             set { _name = value; }
         }
 
-        private string _address;
+        private string _kinds;
 
-        public string Address
+        public string Kinds
         {
-            get { return _address; }
-            set { _address = value; }
+            get { return _kinds; }
+            set { _kinds = value; }
         }
 
-             public Metro(string name, string address)
+             public DanceDirections(string name, string kinds)
         {
             _name = name;
-            _address = address;
+            _kinds = kinds;
         }
     }
+
 }

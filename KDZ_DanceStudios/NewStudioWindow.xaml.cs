@@ -19,10 +19,10 @@ namespace KDZ_DanceStudios
     /// </summary>
     public partial class NewStudioWindow : Window
     {
-        public NewStudioWindow(List<Metro> metro)
+        public NewStudioWindow(List<DanceDirections> direction)
         {
             InitializeComponent();
-            comboBoxMetro.ItemsSource = metro;
+            comboBoxDanceDirections.ItemsSource = direction;
         }
 
         DanceStudios _newStudio;
@@ -32,46 +32,49 @@ namespace KDZ_DanceStudios
             get { return _newStudio; }
         }
 
-    private void buttonAdd_Click(object sender, RoutedEventArgs e)
-    {
-        int rating;
-        int price;
-        if (string.IsNullOrWhiteSpace(textBoxName.Text))
+        private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Необходимо ввести название");
-            textBoxName.Focus();
-            return;
-        }
-        if (comboBoxMetro.SelectedItem == null)
-        {
-            MessageBox.Show("Необходимо выбрать станцию метро");
-            comboBoxMetro.Focus();
-            return;
-        }
-        if (!int.TryParse(textBoxPrice.Text, out price))
-        {
-            MessageBox.Show("Некорректно задана цена");
-            textBoxPrice.Focus();
-            return;
-        }
+            int rating;
+            int price;
+            if (string.IsNullOrWhiteSpace(textBoxName.Text))
+            {
+                MessageBox.Show("Необходимо ввести название");
+                textBoxName.Focus();
+                return;
+            }
 
-        if (!int.TryParse(textBoxRating.Text, out rating))
-        {
-            MessageBox.Show("Некорректное значение рейтинга");
-            textBoxRating.Focus();
-            return;
-        }
+            if (!int.TryParse(textBoxPrice.Text, out price))
+            {
+                MessageBox.Show("Некорректно задана цена");
+                textBoxPrice.Focus();
+                return;
+            }
 
-        if (rating < 0 || rating > 10)
-         {
-            MessageBox.Show("Рейтинг должен быть от 0 до 10 включительно");
-            textBoxRating.Focus();
-            return;
+            if (!int.TryParse(textBoxRating.Text, out rating))
+            {
+                MessageBox.Show("Некорректное значение рейтинга");
+                textBoxRating.Focus();
+                return;
+            }
+
+            if (rating < 0 || rating > 10)
+            {
+                MessageBox.Show("Рейтинг должен быть от 0 до 10 включительно");
+                textBoxRating.Focus();
+                return;
+            }
+
+            if (comboBoxDanceDirections.SelectedItem == null)
+            {
+                MessageBox.Show("Необходимо выбрать станцию метро");
+                comboBoxDanceDirections.Focus();
+                return;
             }
 
             _newStudio = new DanceStudios(textBoxName.Text, price, rating);
-        _newStudio.Metro = comboBoxMetro.SelectedItem as Metro;
-        DialogResult = true;
+            _newStudio.DanceDirections = comboBoxDanceDirections.SelectedItem as DanceDirections;
+            DialogResult = true;
+           
+        }
     }
 }
-    }

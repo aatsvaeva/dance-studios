@@ -20,7 +20,8 @@ namespace KDZ_DanceStudios
     {
         const string FileName = "studios.txt";
         List<DanceStudios> _studios = new List<DanceStudios>();
-        List<Metro> _metro = new List<Metro>();
+        List<DanceDirections> _direction = new List<DanceDirections>();
+
         public DanceStudiosWindow()
         {
             InitializeComponent();
@@ -36,10 +37,10 @@ namespace KDZ_DanceStudios
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var window = new NewStudioWindow(_metro);
+            var window = new NewStudioWindow(_direction);
             if (window.ShowDialog().Value)
             {
-                _studios.Add(window.NewStudio);
+                _studios.Add(window.NewStudio);             
                 SaveData();
                 RefreshListBox();
             }
@@ -54,7 +55,7 @@ namespace KDZ_DanceStudios
             }
         }
 
-        private void listBoxLecturers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void listBoxStudios_SelectionChanged(object sender, SelectionChangedEventArgs e)
         { 
             buttonRemove.IsEnabled = listBoxStudios.SelectedIndex != -1;
         }
@@ -64,7 +65,7 @@ namespace KDZ_DanceStudios
             {
                 foreach (var stud in _studios)
                 {
-                    sw.WriteLine($"{stud.Name}:{stud.Metro.Name}:{stud.Metro.Address}:{stud.Price}:{stud.Rating}");
+                    sw.WriteLine($"{stud.Name}:{stud.Price}:{stud.Rating}:{stud.DanceDirections.Name}:{stud.DanceDirections.Kinds}");
                 }
             }
         }
@@ -74,7 +75,7 @@ namespace KDZ_DanceStudios
             try
             {
                 _studios = new List<DanceStudios>();
-                _metro = new List<Metro>();
+                _direction = new List<DanceDirections>();
 
                 using (var sr = new StreamReader(FileName))
                 {
@@ -82,39 +83,42 @@ namespace KDZ_DanceStudios
                     {
                         var line = sr.ReadLine();
                         var parts = line.Split(':');
-                        if (parts.Length == 4)
+                        if (parts.Length == 5)
                         {
 
                             int i = 0;
-                            while (i < _metro.Count && _metro[i].Name != parts[2])
+                            while (i < _direction.Count && _direction[i].Name != parts[2])
                                 i++;
-                            Metro f;
-                            if (i < _metro.Count)
-                                f = _metro[i];  
+                            DanceDirections d;
+                            if (i < _direction.Count)
+                                d = _direction[i];  
                             else
                             {
-                                f = new Metro(parts[2], parts[3]);
-                                _metro.Add(f);
+                                d = new DanceDirections(parts[3], parts[4]);
+                                _direction.Add(d);
                             }
 
                             var dancestudio = new DanceStudios(parts[0], int.Parse(parts[1]), int.Parse(parts[2]));
-                            dancestudio.Metro = f;
+                            dancestudio.DanceDirections = d;
                             _studios.Add(dancestudio);
+
                         }
                     }
-
+                    _direction.Add(new DanceDirections("Современные танцы", "Джаз-модерн, RNB dance, Джаз-фанк, Go-Go, C-Walk, House, Шаффл, Контемп, Реггетон, Vogue"));
+                    _direction.Add(new DanceDirections("Латиноамериканские танцы", "Самба, Ча-ча-ча, Румба, Пасодобль, Джайв, Бачата"));
+                    _direction.Add(new DanceDirections("Народные танцы", "Африканские танцы, Восточные танцы, Bollywood dance, Лезгинка, Русские народные"));
+                    _direction.Add(new DanceDirections("Бальные танцы", "Медленный вальс, Венский вальс, Танго, Фокстрот, Квикстеп"));
+                    _direction.Add(new DanceDirections("Уличные танцы", "Хип-Хоп, Брейк-данс, Поппинг, Локинг, Krump, Dancehall"));
 
                 }
+               
             }
-            catch (FileNotFoundException)
-            {
-                _metro.Add(new Metro("Новокузнецкая", "Пятницкая 5"));
-            }
+            
             catch
             {
                 MessageBox.Show("Ошибка чтения из файла");
             }
-            RefreshListBox();
+            RefreshListBox();           
         }
     }
 }

@@ -8,7 +8,8 @@ namespace KDZ_DanceStudios
 {
    public class DanceStudios
     {
-            private string _name;
+        public const int DefaultRating = 5;
+        private string _name;
 
         public string Name
         {
@@ -23,9 +24,9 @@ namespace KDZ_DanceStudios
             get { return _price; }
             set { _price = value; }
         }
-        private double _rating;
+        private int _rating;
 
-        public double Rating
+        public int Rating
         {
             get { return _rating; }
             set { _rating = value; }
@@ -34,16 +35,16 @@ namespace KDZ_DanceStudios
         {
             get
             {
-                return $"{_name} - {_metro.Name} - {_metro.Address} - {_price} - {_rating} ";
+                return $"{_name} - {_price} - {_rating} - {_direction.Name} - {_direction.Kinds} ";
             }
         }
 
-        private Metro _metro;
+        private DanceDirections _direction;
 
-        public Metro Metro
+        public DanceDirections DanceDirections
         {
-            get { return _metro; }
-            set { _metro = value; }
+            get { return _direction; }
+            set { _direction = value; }
         }
 
 
@@ -54,6 +55,9 @@ namespace KDZ_DanceStudios
             _price = price;
             _rating = rating;
         }
-
+        
+        public DanceStudios(string name,int price) : this(name,price, DefaultRating)
+        {
+        }
     }
 }
