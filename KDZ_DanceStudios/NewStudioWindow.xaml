@@ -16,22 +16,7 @@
         <TextBox x:Name="textBoxPrice" HorizontalAlignment="Left" Height="23" Margin="159,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
         <TextBlock HorizontalAlignment="Left" Margin="19,109,0,0" TextWrapping="Wrap" Text="Рейтинг" VerticalAlignment="Top" RenderTransformOrigin="0.249,-0.235"/>
         <TextBox x:Name="textBoxRating" HorizontalAlignment="Left" Height="23" Margin="104,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.237,0.517"/>
-        <ComboBox x:Name="comboBoxLocation" HorizontalAlignment="Left" Margin="135,191,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Content="ЦАО"/>
-            <ComboBoxItem Content="САО"/>
-            <ComboBoxItem Content="СВАО"/>
-            <ComboBoxItem Content="ВАО"/>
-            <ComboBoxItem Content="ЮВАО"/>
-            <ComboBoxItem Content="ЮАО"/>
-            <ComboBoxItem Content="ЮЗАО"/>
-            <ComboBoxItem Content="ЗАО"/>
-            <ComboBoxItem Content="СЗАО"/>
-            <ComboBoxItem Content="ЗелАО"/>
-            <ComboBoxItem Content="ТАО"/>
-            <ComboBoxItem Content="НАО"/>
-        </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="26,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.305,1.253"/>
-        <TextBlock HorizontalAlignment="Left" Margin="26,191,0,0" TextWrapping="Wrap" Text="Расположение" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

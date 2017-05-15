@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace KDZ_DanceStudios
 {
    public class DanceStudios
-    {
-        public const int DefaultRating = 5;
+    {     
         private string _name;
 
         public string Name
@@ -38,7 +37,7 @@ namespace KDZ_DanceStudios
                 return $"{_name} - {_price} - {_rating} - {_direction.Name} - {_direction.Kinds} ";
             }
         }
-
+       
         private DanceDirections _direction;
 
         public DanceDirections DanceDirections
@@ -54,10 +53,6 @@ namespace KDZ_DanceStudios
             _name = name;
             _price = price;
             _rating = rating;
-        }
-        
-        public DanceStudios(string name,int price) : this(name,price, DefaultRating)
-        {
-        }
+        }             
     }
 }
