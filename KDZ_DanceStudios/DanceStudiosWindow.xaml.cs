@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,8 +18,7 @@ namespace KDZ_DanceStudios
 {
 
     public partial class DanceStudiosWindow : Window
-    {
-        const string FileName = "studios.txt";
+    {      
         List<DanceStudios> _studios = new List<DanceStudios>();
         List<DanceDirections> _direction = new List<DanceDirections>();
 
@@ -31,8 +31,11 @@ namespace KDZ_DanceStudios
 
         private void RefreshListBox()
         {
-            listBoxStudios.ItemsSource = null;
-            listBoxStudios.ItemsSource = _studios;
+            listBoxStudios.Items.Clear();
+            foreach (DanceStudios st in _studios)
+            {
+                listBoxStudios.Items.Add(st.Info + "\n");
+            }
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
@@ -61,12 +64,10 @@ namespace KDZ_DanceStudios
         }
         private void SaveData()
         {
-            using (var sw = new StreamWriter(FileName))
+            using (FileStream filest = new FileStream("../../studio.dat", FileMode.Open))
             {
-                foreach (var stud in _studios)
-                {
-                    sw.WriteLine($"{stud.Name}:{stud.Price}:{stud.Rating}:{stud.DanceDirections.Name}:{stud.DanceDirections.Kinds}");
-                }
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(filest, _studios);
             }
         }
 
@@ -74,44 +75,23 @@ namespace KDZ_DanceStudios
         {
             try
             {
-                _studios = new List<DanceStudios>();
-                _direction = new List<DanceDirections>();
-
-                using (var sr = new StreamReader(FileName))
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (FileStream filest = new FileStream("../../studio.dat", FileMode.OpenOrCreate))
                 {
-                    while (!sr.EndOfStream)
+                    try
                     {
-                        var line = sr.ReadLine();
-                        var parts = line.Split(':');
-                        if (parts.Length == 5)
-                        {
-
-                            int i = 0;
-                            while (i < _direction.Count && _direction[i].Name != parts[2])
-                                i++;
-                            DanceDirections d;
-                            if (i < _direction.Count)
-                                d = _direction[i];  
-                            else
-                            {
-                                d = new DanceDirections(parts[3], parts[4]);
-                                _direction.Add(d);
-                            }
-
-                            var dancestudio = new DanceStudios(parts[0], int.Parse(parts[1]), int.Parse(parts[2]));
-                            dancestudio.DanceDirections = d;
-                            _studios.Add(dancestudio);
-
-                        }
+                        _studios = (List<DanceStudios>)formatter.Deserialize(filest);
                     }
-                    _direction.Add(new DanceDirections("Современные танцы", "Джаз-модерн, RNB dance, Джаз-фанк, Go-Go, C-Walk, House, Шаффл, Контемп, Реггетон, Vogue"));
+                    catch
+                    {
+                        _studios = new List<DanceStudios>();
+                    }
+                }
+                _direction.Add(new DanceDirections("Современные танцы", "Джаз-модерн, RNB dance, Джаз-фанк, Go-Go, C-Walk, House, Шаффл, Контемп, Реггетон, Vogue"));
                     _direction.Add(new DanceDirections("Латиноамериканские танцы", "Самба, Ча-ча-ча, Румба, Пасодобль, Джайв, Бачата"));
                     _direction.Add(new DanceDirections("Народные танцы", "Африканские танцы, Восточные танцы, Bollywood dance, Лезгинка, Русские народные"));
                     _direction.Add(new DanceDirections("Бальные танцы", "Медленный вальс, Венский вальс, Танго, Фокстрот, Квикстеп"));
-                    _direction.Add(new DanceDirections("Уличные танцы", "Хип-Хоп, Брейк-данс, Поппинг, Локинг, Krump, Dancehall"));
-
-                }
-               
+                    _direction.Add(new DanceDirections("Уличные танцы", "Хип-Хоп, Брейк-данс, Поппинг, Локинг, Krump, Dancehall"));                              
             }
             
             catch

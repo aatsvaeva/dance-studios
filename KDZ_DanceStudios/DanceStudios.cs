@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace KDZ_DanceStudios
 {
-   public class DanceStudios
+    [Serializable]
+    public class DanceStudios
     {     
         private string _name;
 

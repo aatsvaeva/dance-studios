@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,8 +34,22 @@ namespace KDZ_DanceStudios
             get { return _newStudio; }
         }
 
+        List<DanceStudios> _studios;
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream filest = new FileStream("../../studio.dat", FileMode.OpenOrCreate))
+            {
+                try
+                {
+                    _studios = (List<DanceStudios>)formatter.Deserialize(filest);
+                }
+                catch
+                {
+                    _studios = new List<DanceStudios>();
+                }
+            }
+
             int rating;
             int price;
             if (string.IsNullOrWhiteSpace(textBoxName.Text))
@@ -66,13 +82,19 @@ namespace KDZ_DanceStudios
 
             if (comboBoxDanceDirections.SelectedItem == null)
             {
-                MessageBox.Show("Необходимо выбрать станцию метро");
+                MessageBox.Show("Необходимо выбрать направление");
                 comboBoxDanceDirections.Focus();
                 return;
             }
 
             _newStudio = new DanceStudios(textBoxName.Text, price, rating);
             _newStudio.DanceDirections = comboBoxDanceDirections.SelectedItem as DanceDirections;
+            _studios.Add(_newStudio);
+            using (FileStream filest = new FileStream("../../studio.dat", FileMode.Open))
+            {
+                formatter = new BinaryFormatter();
+                formatter.Serialize(filest, _studios);
+            }
             DialogResult = true;
            
         }
