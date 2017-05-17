@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KDZ_DanceStudios"
         mc:Ignorable="d"
-        Title="Рейтинг танцевальных студий" Height="276.378" Width="300">
+        Title="Рейтинг танцевальных студий" Height="313.228" Width="482.11">
     <Grid RenderTransformOrigin="0.771,0.551">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="121*"/>
             <ColumnDefinition Width="58*"/>
             <ColumnDefinition Width="113*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="listBoxStudios" HorizontalAlignment="Left" Height="157" Margin="23,28,0,0" VerticalAlignment="Top" Width="246" SelectionChanged="listBoxStudios_SelectionChanged" Grid.ColumnSpan="3"></ListBox>
-        <Button x:Name="buttonAdd" HorizontalAlignment="Left" Margin="30,201,0,0" VerticalAlignment="Top" Width="75"  Click="buttonAdd_Click">Добавить</Button>
-        <Button x:Name="buttonRemove" HorizontalAlignment="Left" Margin="4.803,201,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="buttonRemove_Click" Grid.ColumnSpan="2" Grid.Column="1">Удалить</Button>
+        <ListBox x:Name="listBoxStudios" HorizontalAlignment="Left" Height="202" Margin="23,28,0,0" VerticalAlignment="Top" Width="426" SelectionChanged="listBoxStudios_SelectionChanged" Grid.ColumnSpan="3"></ListBox>
+        <Button x:Name="buttonAdd" HorizontalAlignment="Left" Margin="158,244,0,0" VerticalAlignment="Top" Width="75"  Click="buttonAdd_Click" RenderTransformOrigin="1.573,-0.294" Grid.ColumnSpan="2">Добавить</Button>
+        <Button x:Name="buttonRemove" HorizontalAlignment="Left" Margin="56,244,0,0" VerticalAlignment="Top" Width="75" Click="buttonRemove_Click" Grid.Column="1" IsEnabled="False" Grid.ColumnSpan="2">Удалить</Button>
 
     </Grid>
 </Window>

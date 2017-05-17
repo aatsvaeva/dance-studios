@@ -33,8 +33,8 @@ namespace KDZ_DanceStudios
         {
             listBoxStudios.Items.Clear();
             foreach (DanceStudios st in _studios)
-            {
-                listBoxStudios.Items.Add(st.Info + "\n");
+            {            
+                listBoxStudios.Items.Add(st.Info + "\n");               
             }
         }
 
@@ -87,11 +87,11 @@ namespace KDZ_DanceStudios
                         _studios = new List<DanceStudios>();
                     }
                 }
-                _direction.Add(new DanceDirections("Современные танцы", "Джаз-модерн, RNB dance, Джаз-фанк, Go-Go, C-Walk, House, Шаффл, Контемп, Реггетон, Vogue"));
-                    _direction.Add(new DanceDirections("Латиноамериканские танцы", "Самба, Ча-ча-ча, Румба, Пасодобль, Джайв, Бачата"));
-                    _direction.Add(new DanceDirections("Народные танцы", "Африканские танцы, Восточные танцы, Bollywood dance, Лезгинка, Русские народные"));
-                    _direction.Add(new DanceDirections("Бальные танцы", "Медленный вальс, Венский вальс, Танго, Фокстрот, Квикстеп"));
-                    _direction.Add(new DanceDirections("Уличные танцы", "Хип-Хоп, Брейк-данс, Поппинг, Локинг, Krump, Dancehall"));                              
+                    _direction.Add(new DanceDirections("Современные танцы"));
+                    _direction.Add(new DanceDirections("Латиноамериканские танцы"));
+                    _direction.Add(new DanceDirections("Народные танцы"));
+                    _direction.Add(new DanceDirections("Бальные танцы"));
+                    _direction.Add(new DanceDirections("Уличные танцы"));                              
             }
             
             catch

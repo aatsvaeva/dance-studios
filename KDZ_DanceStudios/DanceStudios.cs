@@ -35,10 +35,9 @@ namespace KDZ_DanceStudios
         {
             get
             {
-                return $"{_name} - {_price} - {_rating} - {_direction.Name} - {_direction.Kinds} ";
+                return $"{_name} : {_price}   {_rating}   {DanceDirections.Name}";
             }
         }
-       
         private DanceDirections _direction;
 
         public DanceDirections DanceDirections
@@ -46,14 +45,12 @@ namespace KDZ_DanceStudios
             get { return _direction; }
             set { _direction = value; }
         }
-
-
-
-        public DanceStudios (string name,int price, int rating)
+        public DanceStudios (string name,int price, int rating,DanceDirections direction)
         {
             _name = name;
             _price = price;
             _rating = rating;
+            _direction=direction;
         }             
     }
 }

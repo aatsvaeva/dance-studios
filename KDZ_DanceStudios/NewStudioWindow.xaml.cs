@@ -25,6 +25,7 @@ namespace KDZ_DanceStudios
         {
             InitializeComponent();
             comboBoxDanceDirections.ItemsSource = direction;
+            LoadData();
         }
 
         DanceStudios _newStudio;
@@ -50,6 +51,7 @@ namespace KDZ_DanceStudios
                 }
             }
 
+            DanceDirections direction;
             int rating;
             int price;
             if (string.IsNullOrWhiteSpace(textBoxName.Text))
@@ -87,16 +89,111 @@ namespace KDZ_DanceStudios
                 return;
             }
 
-            _newStudio = new DanceStudios(textBoxName.Text, price, rating);
-            _newStudio.DanceDirections = comboBoxDanceDirections.SelectedItem as DanceDirections;
+
+            direction = comboBoxDanceDirections.SelectedItem as DanceDirections;
+            _newStudio = new DanceStudios(textBoxName.Text, price, rating, direction);
+            //_newStudio.DanceDirections = comboBoxDanceDirections.SelectedItem as DanceDirections;
+
             _studios.Add(_newStudio);
+            dataGridStudios.ItemsSource = _studios;
+
             using (FileStream filest = new FileStream("../../studio.dat", FileMode.Open))
             {
                 formatter = new BinaryFormatter();
                 formatter.Serialize(filest, _studios);
             }
-            DialogResult = true;
-           
+            // DialogResult = true; закрывает окно
+        }
+        private void LoadData()
+        {
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (FileStream filest = new FileStream("../../studio.dat", FileMode.OpenOrCreate))
+                {
+                    try
+                    {
+                        _studios = (List<DanceStudios>)formatter.Deserialize(filest);
+                    }
+                    catch
+                    {
+                        _studios = new List<DanceStudios>();
+                    }
+                }
+            }
+
+               /* _direction.Add(new DanceDirections("Современные танцы"));
+                _direction.Add(new DanceDirections("Латиноамериканские танцы"));
+                _direction.Add(new DanceDirections("Народные танцы"));
+                _direction.Add(new DanceDirections("Бальные танцы"));
+                _direction.Add(new DanceDirections("Уличные танцы"));
+            }*/
+
+            catch
+            {
+                MessageBox.Show("Ошибка чтения из файла");
+            }
+            RefreshDataGrid();
+        }
+
+        private void RefreshDataGrid()
+        {
+            dataGridStudios.SelectedCells.Clear();
+            foreach (DanceStudios st in _studios)
+            {
+                dataGridStudios.ItemsSource=_studios;
+            }
+        }
+
+        private void SaveData()
+        {
+            using (FileStream filest = new FileStream("../../studio.dat", FileMode.Open))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(filest, _studios);
+            }
+        }
+
+        private void buttonRemove_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dataGridStudios.SelectedIndex + 1;
+            if (index==0)
+            {
+                MessageBox.Show("Необходимо выбрать элемент");
+            }
+           else
+            {
+                _studios.RemoveAt(index - 1);
+                dataGridStudios.ItemsSource = null;               
+                dataGridStudios.ItemsSource = _studios;
+                RefreshDataGrid();
+                SaveData();
+               
+            }
+        }
+        
+        private void dataGridStudios_SelectionChanged (object sender, SelectionChangedEventArgs e)
+        {
+            buttonRemove.IsEnabled = dataGridStudios.SelectedIndex != -1;
+        }
+
+        private void buttonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < _studios.Count; i++)
+                if (_studios[i].Name == textBoxSearch.Text)
+                    (dataGridStudios.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow).Background = Brushes.HotPink;
+                else if (string.IsNullOrWhiteSpace(textBoxSearch.Text))
+                {
+                    MessageBox.Show("Необходимо ввести название для поиска");
+                    textBoxName.Focus();
+                    return;
+                }
+
+        }
+
+        private void EditDataGrid(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            var studio = e.Row.Item as DanceStudios;
         }
     }
 }
