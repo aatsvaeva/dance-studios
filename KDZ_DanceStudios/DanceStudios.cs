@@ -31,21 +31,15 @@ namespace KDZ_DanceStudios
             get { return _rating; }
             set { _rating = value; }
         }
-        public string Info
-        {
-            get
-            {
-                return $"{_name} : {_price}   {_rating}   {DanceDirections.Name}";
-            }
-        }
-        private DanceDirections _direction;
+        private string _direction;
 
-        public DanceDirections DanceDirections
+        public string Direction
         {
             get { return _direction; }
             set { _direction = value; }
         }
-        public DanceStudios (string name,int price, int rating,DanceDirections direction)
+
+        public DanceStudios (string name,int price, int rating,string direction)
         {
             _name = name;
             _price = price;

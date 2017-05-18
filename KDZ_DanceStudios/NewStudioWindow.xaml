@@ -17,7 +17,14 @@
         <TextBlock HorizontalAlignment="Left" Margin="419,391,0,0" TextWrapping="Wrap" Text="Рейтинг" VerticalAlignment="Top" RenderTransformOrigin="0.249,-0.235"/>
         <TextBox x:Name="textBoxRating" HorizontalAlignment="Left" Height="23" Margin="371,423,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.237,0.517"/>       
         <GroupBox Header="Введите данные" Margin="42,356,44,0" Height="106" VerticalAlignment="Top"/>
-        <DataGrid x:Name="dataGridStudios" Margin="42,25,44,0" Height="316" VerticalAlignment="Top" SelectionChanged="dataGridStudios_SelectionChanged"/>
+        <DataGrid x:Name="dataGridStudios"  Margin="42,25,44,0" Height="316" VerticalAlignment="Top" SelectionChanged="dataGridStudios_SelectionChanged" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Width="200" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Цена" Width="*" Binding="{Binding Path=Price}"/>
+                <DataGridTextColumn Header="Рейтинг" Width="*" Binding="{Binding Path=Rating}"/>
+                <DataGridTextColumn Header="Направление" Width="300" Binding="{Binding Path=Direction}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <GroupBox Header="Поиск" Margin="42,467,475,0" Height="77" VerticalAlignment="Top">
             <Button x:Name="buttonSearch" Content="Поиск" HorizontalAlignment="Left" Margin="141,19,0,0" VerticalAlignment="Top" Width="74" Height="23" Click="buttonSearch_Click"/>
         </GroupBox>

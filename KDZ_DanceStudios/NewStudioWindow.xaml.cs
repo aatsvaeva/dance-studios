@@ -91,7 +91,7 @@ namespace KDZ_DanceStudios
 
 
             direction = comboBoxDanceDirections.SelectedItem as DanceDirections;
-            _newStudio = new DanceStudios(textBoxName.Text, price, rating, direction);
+            _newStudio = new DanceStudios(textBoxName.Text, price, rating, comboBoxDanceDirections.Text);
             //_newStudio.DanceDirections = comboBoxDanceDirections.SelectedItem as DanceDirections;
 
             _studios.Add(_newStudio);
@@ -102,7 +102,6 @@ namespace KDZ_DanceStudios
                 formatter = new BinaryFormatter();
                 formatter.Serialize(filest, _studios);
             }
-            // DialogResult = true; закрывает окно
         }
         private void LoadData()
         {
@@ -121,13 +120,6 @@ namespace KDZ_DanceStudios
                     }
                 }
             }
-
-               /* _direction.Add(new DanceDirections("Современные танцы"));
-                _direction.Add(new DanceDirections("Латиноамериканские танцы"));
-                _direction.Add(new DanceDirections("Народные танцы"));
-                _direction.Add(new DanceDirections("Бальные танцы"));
-                _direction.Add(new DanceDirections("Уличные танцы"));
-            }*/
 
             catch
             {
@@ -184,8 +176,8 @@ namespace KDZ_DanceStudios
                     (dataGridStudios.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow).Background = Brushes.HotPink;
                 else if (string.IsNullOrWhiteSpace(textBoxSearch.Text))
                 {
-                    MessageBox.Show("Необходимо ввести название для поиска");
-                    textBoxName.Focus();
+                    MessageBox.Show("Необходимо ввести название студии");
+                    textBoxSearch.Focus();
                     return;
                 }
 

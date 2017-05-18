@@ -34,34 +34,21 @@ namespace KDZ_DanceStudios
             listBoxStudios.Items.Clear();
             foreach (DanceStudios st in _studios)
             {            
-                listBoxStudios.Items.Add(st.Info + "\n");               
+                listBoxStudios.Items.Add(st.Name+" :  "+st.Price+"р.  "+st.Rating+".0  "+st.Direction+ "\n");               
             }
         }
 
-        private void buttonAdd_Click(object sender, RoutedEventArgs e)
+        private void buttonEdit_Click(object sender, RoutedEventArgs e)
         {
             var window = new NewStudioWindow(_direction);
             if (window.ShowDialog().Value)
             {
-                _studios.Add(window.NewStudio);             
+                _studios.Add(window.NewStudio);
                 SaveData();
                 RefreshListBox();
             }
         }
-        private void buttonRemove_Click(object sender, RoutedEventArgs e)
-        {
-            if (listBoxStudios.SelectedIndex != -1)
-            {
-                _studios.RemoveAt(listBoxStudios.SelectedIndex);
-                SaveData();
-                RefreshListBox();
-            }
-        }
-
-        private void listBoxStudios_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        { 
-            buttonRemove.IsEnabled = listBoxStudios.SelectedIndex != -1;
-        }
+       
         private void SaveData()
         {
             using (FileStream filest = new FileStream("../../studio.dat", FileMode.Open))
@@ -91,7 +78,8 @@ namespace KDZ_DanceStudios
                     _direction.Add(new DanceDirections("Латиноамериканские танцы"));
                     _direction.Add(new DanceDirections("Народные танцы"));
                     _direction.Add(new DanceDirections("Бальные танцы"));
-                    _direction.Add(new DanceDirections("Уличные танцы"));                              
+                    _direction.Add(new DanceDirections("Уличные танцы"));
+                    _direction.Add(new DanceDirections("Восточные танцы"));
             }
             
             catch
@@ -99,6 +87,19 @@ namespace KDZ_DanceStudios
                 MessageBox.Show("Ошибка чтения из файла");
             }
             RefreshListBox();           
+        }
+
+        private void buttonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < _studios.Count; i++)
+                if (_studios[i].Name == textBoxSearch.Text)
+                    (listBoxStudios.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Background = Brushes.HotPink;
+                else if (string.IsNullOrWhiteSpace(textBoxSearch.Text))
+                {
+                    MessageBox.Show("Необходимо ввести название студии");
+                    textBoxSearch.Focus();
+                    return;
+                }
         }
     }
 }
