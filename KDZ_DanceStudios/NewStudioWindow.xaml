@@ -15,9 +15,9 @@
         <TextBlock HorizontalAlignment="Left" Margin="222,388,0,0" TextWrapping="Wrap" Text="Цена разового занятия" VerticalAlignment="Top" RenderTransformOrigin="0.096,-0.602"/>
         <TextBox x:Name="textBoxPrice" HorizontalAlignment="Left" Height="23" Margin="222,423,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128"/>
         <TextBlock HorizontalAlignment="Left" Margin="419,391,0,0" TextWrapping="Wrap" Text="Рейтинг" VerticalAlignment="Top" RenderTransformOrigin="0.249,-0.235"/>
-        <TextBox x:Name="textBoxRating" HorizontalAlignment="Left" Height="23" Margin="371,423,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.237,0.517"/>       
+        <TextBox x:Name="textBoxRating" HorizontalAlignment="Left" Height="23" Margin="371,423,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.237,0.517"/>
         <GroupBox Header="Введите данные" Margin="42,356,44,0" Height="106" VerticalAlignment="Top"/>
-        <DataGrid x:Name="dataGridStudios"  Margin="42,25,44,0" Height="316" VerticalAlignment="Top" SelectionChanged="dataGridStudios_SelectionChanged" AutoGenerateColumns="False">
+        <DataGrid x:Name="dataGridStudios" Margin="42,25,44,0" Height="316" VerticalAlignment="Top" SelectionChanged="dataGridStudios_SelectionChanged" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Width="200" Binding="{Binding Path=Name}"/>
                 <DataGridTextColumn Header="Цена" Width="*" Binding="{Binding Path=Price}"/>
@@ -30,6 +30,7 @@
         </GroupBox>
         <TextBox x:Name="textBoxSearch" HorizontalAlignment="Left" Height="23" Margin="58,501,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="buttonRemove" Content="Удалить" VerticalAlignment="Bottom" Height="27" Margin="604,0,65,35" Click="buttonRemove_Click" RenderTransformOrigin="0.50,0.50" IsEnabled="False"/>
+        <Button x:Name="buttonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="324,501,0,0" VerticalAlignment="Top" Width="125" Height="38" Click="buttonSave_Click"/>
 
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -31,11 +32,13 @@ namespace KDZ_DanceStudios
 
         private void RefreshListBox()
         {
-            listBoxStudios.Items.Clear();
-            foreach (DanceStudios st in _studios)
-            {            
-                listBoxStudios.Items.Add(st.Name+" :  "+st.Price+"р.  "+st.Rating+".0  "+st.Direction+ "\n");               
-            }
+            listBoxStudios.Items.Clear();          
+                foreach (DanceStudios st in _studios)
+                {
+                listBoxStudios.Items.Add(st.Name + " :  " + st.Price + "р.  " + st.Rating + ".0  " + st.Direction);
+                }
+            listBoxStudios.Items.SortDescriptions.Clear();
+            listBoxStudios.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Rating", System.ComponentModel.ListSortDirection.Ascending));
         }
 
         private void buttonEdit_Click(object sender, RoutedEventArgs e)
@@ -93,13 +96,18 @@ namespace KDZ_DanceStudios
         {
             for (int i = 0; i < _studios.Count; i++)
                 if (_studios[i].Name == textBoxSearch.Text)
-                    (listBoxStudios.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Background = Brushes.HotPink;
+                    (listBoxStudios.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Background = Brushes.Plum;
                 else if (string.IsNullOrWhiteSpace(textBoxSearch.Text))
                 {
                     MessageBox.Show("Необходимо ввести название студии");
                     textBoxSearch.Focus();
                     return;
                 }
+        }
+
+        private void buttonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            LoadData();
         }
     }
 }

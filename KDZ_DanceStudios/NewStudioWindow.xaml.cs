@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -143,7 +145,7 @@ namespace KDZ_DanceStudios
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(filest, _studios);
-            }
+            }          
         }
 
         private void buttonRemove_Click(object sender, RoutedEventArgs e)
@@ -173,7 +175,7 @@ namespace KDZ_DanceStudios
         {
             for (int i = 0; i < _studios.Count; i++)
                 if (_studios[i].Name == textBoxSearch.Text)
-                    (dataGridStudios.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow).Background = Brushes.HotPink;
+                    (dataGridStudios.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow).Background = Brushes.Plum;
                 else if (string.IsNullOrWhiteSpace(textBoxSearch.Text))
                 {
                     MessageBox.Show("Необходимо ввести название студии");
@@ -183,9 +185,9 @@ namespace KDZ_DanceStudios
 
         }
 
-        private void EditDataGrid(object sender, DataGridRowEditEndingEventArgs e)
+        private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            var studio = e.Row.Item as DanceStudios;
+            SaveData();
         }
     }
 }
