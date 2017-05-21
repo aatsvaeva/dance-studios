@@ -104,6 +104,7 @@ namespace KDZ_DanceStudios
                 formatter = new BinaryFormatter();
                 formatter.Serialize(filest, _studios);
             }
+            Logging.Log("Добавлена новая студия");
         }
         private void LoadData()
         {
@@ -157,13 +158,18 @@ namespace KDZ_DanceStudios
             }
            else
             {
-                _studios.RemoveAt(index - 1);
+                foreach (var row in dataGridStudios.SelectedItems)
+                {
+                    DanceStudios removedStudio = row as DanceStudios;
+                    _studios.Remove(removedStudio);
+                }
                 dataGridStudios.ItemsSource = null;               
                 dataGridStudios.ItemsSource = _studios;
                 RefreshDataGrid();
                 SaveData();
                
             }
+            Logging.Log("Удалена студия");
         }
         
         private void dataGridStudios_SelectionChanged (object sender, SelectionChangedEventArgs e)
@@ -182,12 +188,21 @@ namespace KDZ_DanceStudios
                     textBoxSearch.Focus();
                     return;
                 }
-
+            Logging.Log("Выполнен поиск по названию студии");
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             SaveData();
+            Logging.Log("Сохранение обновленных данных");
+        }
+
+        private void buttonBack_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new DanceStudiosWindow();
+            this.Close();
+            window.Show();
+            Logging.Log("Переход на окно просмотра");
         }
     }
 }

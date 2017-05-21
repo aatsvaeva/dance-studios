@@ -26,8 +26,8 @@ namespace KDZ_DanceStudios
         public DanceStudiosWindow()
         {
             InitializeComponent();
-
             LoadData();
+            Logging.Log("Программа запущена");
         }
 
         private void RefreshListBox()
@@ -44,12 +44,10 @@ namespace KDZ_DanceStudios
         private void buttonEdit_Click(object sender, RoutedEventArgs e)
         {
             var window = new NewStudioWindow(_direction);
-            if (window.ShowDialog().Value)
-            {
-                _studios.Add(window.NewStudio);
-                SaveData();
-                RefreshListBox();
-            }
+            window.Show();
+            this.Close();
+            Logging.Log("Открыто окно редактирования");
+            
         }
        
         private void SaveData()
@@ -103,11 +101,14 @@ namespace KDZ_DanceStudios
                     textBoxSearch.Focus();
                     return;
                 }
+            Logging.Log("Выполнен поиск по названию студии");
         }
 
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
         {
             LoadData();
+            Logging.Log("Обновлен список студий");
+
         }
     }
 }
