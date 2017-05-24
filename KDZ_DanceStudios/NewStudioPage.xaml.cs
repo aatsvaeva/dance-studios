@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -14,19 +12,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace KDZ_DanceStudios
 {
     /// <summary>
-    /// Логика взаимодействия для NewStudioWindow.xaml
+    /// Логика взаимодействия для NewStudioPage.xaml
     /// </summary>
-    public partial class NewStudioWindow : Window
+    public partial class NewStudioPage : Page
     {
-        public NewStudioWindow(List<DanceDirections> direction)
+        public NewStudioPage()
         {
             InitializeComponent();
-            comboBoxDanceDirections.ItemsSource = direction;
             LoadData();
         }
 
@@ -38,6 +36,7 @@ namespace KDZ_DanceStudios
         }
 
         List<DanceStudios> _studios;
+
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -53,7 +52,6 @@ namespace KDZ_DanceStudios
                 }
             }
 
-            DanceDirections direction;
             int rating;
             int price;
             if (string.IsNullOrWhiteSpace(textBoxName.Text))
@@ -91,13 +89,14 @@ namespace KDZ_DanceStudios
                 return;
             }
 
-
-            direction = comboBoxDanceDirections.SelectedItem as DanceDirections;
             _newStudio = new DanceStudios(textBoxName.Text, price, rating, comboBoxDanceDirections.Text);
-            //_newStudio.DanceDirections = comboBoxDanceDirections.SelectedItem as DanceDirections;
 
             _studios.Add(_newStudio);
             dataGridStudios.ItemsSource = _studios;
+            textBoxName.Clear();
+            textBoxPrice.Clear();
+            textBoxRating.Clear();
+            comboBoxDanceDirections.SelectedItem=null;
 
             using (FileStream filest = new FileStream("../../studio.dat", FileMode.Open))
             {
@@ -121,7 +120,7 @@ namespace KDZ_DanceStudios
                     {
                         _studios = new List<DanceStudios>();
                     }
-                }
+                }                
             }
 
             catch
@@ -136,7 +135,7 @@ namespace KDZ_DanceStudios
             dataGridStudios.SelectedCells.Clear();
             foreach (DanceStudios st in _studios)
             {
-                dataGridStudios.ItemsSource=_studios;
+                dataGridStudios.ItemsSource = _studios;
             }
         }
 
@@ -146,45 +145,41 @@ namespace KDZ_DanceStudios
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(filest, _studios);
-            }          
+            }
         }
 
         private void buttonRemove_Click(object sender, RoutedEventArgs e)
         {
             var index = dataGridStudios.SelectedIndex + 1;
-            if (index==0)
-            {
-                MessageBox.Show("Необходимо выбрать элемент");
-            }
-           else
-            {
                 foreach (var row in dataGridStudios.SelectedItems)
                 {
                     DanceStudios removedStudio = row as DanceStudios;
                     _studios.Remove(removedStudio);
                 }
-                dataGridStudios.ItemsSource = null;               
+                dataGridStudios.ItemsSource = null;
                 dataGridStudios.ItemsSource = _studios;
                 RefreshDataGrid();
                 SaveData();
-               
-            }
+            
             Logging.Log("Удалена студия");
         }
-        
-        private void dataGridStudios_SelectionChanged (object sender, SelectionChangedEventArgs e)
-        {
-            buttonRemove.IsEnabled = dataGridStudios.SelectedIndex != -1;
-        }
+
+       
 
         private void buttonSearch_Click(object sender, RoutedEventArgs e)
-        {
+        {          
             for (int i = 0; i < _studios.Count; i++)
                 if (_studios[i].Name == textBoxSearch.Text)
                     (dataGridStudios.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow).Background = Brushes.Plum;
                 else if (string.IsNullOrWhiteSpace(textBoxSearch.Text))
                 {
                     MessageBox.Show("Необходимо ввести название студии");
+                    textBoxSearch.Focus();
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Студии нет в базе");
                     textBoxSearch.Focus();
                     return;
                 }
@@ -199,10 +194,13 @@ namespace KDZ_DanceStudios
 
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
-            var window = new DanceStudiosWindow();
-            this.Close();
-            window.Show();
+            NavigationService.Navigate(Pages.DanceStudiosPage);
             Logging.Log("Переход на окно просмотра");
+        }
+
+        private void dataGridStudios_SelectionChsnged(object sender, SelectionChangedEventArgs e)
+        {
+            buttonRemove.IsEnabled = dataGridStudios.SelectedIndex != -1;
         }
     }
 }
