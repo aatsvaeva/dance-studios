@@ -28,10 +28,14 @@ namespace KDZ_DanceStudios
             
         }
 
+        //Кнопки
         private void buttonEnterAsGuest_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(Pages.DanceStudiosPage);
             Pages.DanceStudiosPage.buttonEdit.IsEnabled=false;
+            Pages.MasterClassPage.buttonAdd.IsEnabled = false;
+            Pages.MasterClassPage.buttonRemove.IsEnabled = false;
+            Pages.MasterClassPage.buttonSave.IsEnabled = false;
             Logging.Log("Выполнен вход гостя");
         }
 
@@ -84,7 +88,7 @@ namespace KDZ_DanceStudios
                     sw.WriteLine($"{textBoxNewLogin.Text}:{passwordBoxNew.Password}");
                 }
             }
-            MessageBox.Show("Вы зарегистрированы");
+            MessageBox.Show("Пользователь зарегистрирован");
             textBoxName.Clear();
             textBoxSurname.Clear();
             textBoxNewLogin.Clear();
@@ -106,7 +110,7 @@ namespace KDZ_DanceStudios
                         if (textBoxLogin.Text == parts[0] && passwordBox.Password == parts[1])
                         {
                             NavigationService.Navigate(Pages.DanceStudiosPage);
-                        }                      
+                        }                       
                     }
                 }
             }
@@ -114,8 +118,41 @@ namespace KDZ_DanceStudios
             {
                 MessageBox.Show("Ошибка чтения из файла");
             }
-
+            Pages.DanceStudiosPage.buttonEdit.IsEnabled = true;
+            textBoxLogin.Clear();
+            passwordBox.Clear();
             Logging.Log("Вход зарегистрированного пользователя");
+        }
+
+        //Обработчики событий
+        private void buttonEnter_MouseEnter(object sender, MouseEventArgs e)
+        {
+            buttonEnter.FontSize = 14;
+        }
+
+        private void buttonEnter_MouseLeave(object sender, MouseEventArgs e)
+        {
+            buttonEnter.FontSize = 12;
+        }
+
+        private void buttonEnterAsGuest_MouseEnter(object sender, MouseEventArgs e)
+        {
+            buttonEnterAsGuest.FontSize = 14;
+        }
+
+        private void buttonEnterAsGuest_MouseLeave(object sender, MouseEventArgs e)
+        {
+            buttonEnterAsGuest.FontSize = 12;
+        }
+
+        private void buttonRegistration_MouseEnter(object sender, MouseEventArgs e)
+        {
+            buttonRegistration.FontSize = 14;
+        }
+
+        private void buttonRegistration_MouseLeave(object sender, MouseEventArgs e)
+        {
+            buttonRegistration.FontSize = 12;
         }
     }
 }

@@ -8,7 +8,13 @@
       Title="Танцевальные студии" Height="635.263" Width="559.608">
 
     <Grid Margin="0,0,10,0">
-        <DataGrid x:Name="dataGridStudios" HorizontalAlignment="Left" Height="375" Margin="27,0,0,250" VerticalAlignment="Bottom" Width="503" AutoGenerateColumns="False" SelectionChanged="dataGridStudios_SelectionChsnged">
+        <DataGrid x:Name="dataGridStudios" HorizontalAlignment="Left" Height="375" Margin="27,0,0,250" VerticalAlignment="Bottom" Width="503" AutoGenerateColumns="False" SelectionChanged="dataGridStudios_SelectionChanged">
+            <DataGrid.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+            </DataGrid.BorderBrush>
+            <DataGrid.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
+            </DataGrid.Foreground>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Width="180" Binding="{Binding Path=Name}"/>
                 <DataGridTextColumn Header="Цена" Width="*" Binding="{Binding Path=Price}"/>
@@ -16,9 +22,23 @@
                 <DataGridTextColumn Header="Направление" Width="170" Binding="{Binding Path=Direction}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <GroupBox Header="Введите данные" HorizontalAlignment="Left" Height="135" Margin="27,110" VerticalAlignment="Bottom" Width="503"/>
-        <Button x:Name="buttonRemove" Content="Удалить" HorizontalAlignment="Left" Height="27" Margin="412,0,0,123" VerticalAlignment="Bottom" Width="100" Click="buttonRemove_Click" IsEnabled="False"/>
+        <GroupBox Header="Введите данные" HorizontalAlignment="Left" Height="135" Margin="27,110" VerticalAlignment="Bottom" Width="503">
+            <GroupBox.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
+            </GroupBox.BorderBrush>
+            <GroupBox.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+            </GroupBox.Foreground>
+        </GroupBox>
+        <Button x:Name="buttonRemove" Content="Удалить" HorizontalAlignment="Left" Height="27" Margin="412,0,0,123" VerticalAlignment="Bottom" Width="100" Click="buttonRemove_Click" IsEnabled="False">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
         <ComboBox x:Name="comboBoxDanceDirections" HorizontalAlignment="Left" Margin="393,0,0,170" VerticalAlignment="Bottom" Width="119" Height="24">
+            <ComboBox.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </ComboBox.Foreground>
             <ComboBoxItem Content="Современные танцы"/>
             <ComboBoxItem Content="Уличные танцы"/>
             <ComboBoxItem Content="Бальные танцы"/>
@@ -28,17 +48,56 @@
         </ComboBox>
         <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Height="23" Margin="40,170" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="100"/>
         <TextBox x:Name="textBoxPrice" HorizontalAlignment="Left" Height="23" Margin="155,170" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="100"/>
-        <TextBlock HorizontalAlignment="Left" Margin="40,199" TextWrapping="Wrap" Text="Название" VerticalAlignment="Bottom" Width="100" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Left" Margin="155,0,0,199" TextWrapping="Wrap" Text="Цена" VerticalAlignment="Bottom" Width="100" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,199" TextWrapping="Wrap" Text="Название" VerticalAlignment="Bottom" Width="100" TextAlignment="Center">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="155,0,0,199" TextWrapping="Wrap" Text="Цена" VerticalAlignment="Bottom" Width="100" TextAlignment="Center">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
         <TextBox x:Name="textBoxRating" HorizontalAlignment="Left" Height="23" Margin="275,0,0,170" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="100"/>
-        <TextBlock HorizontalAlignment="Left" Margin="275,0,0,199" TextWrapping="Wrap" Text="Рейтинг" VerticalAlignment="Bottom" Width="100" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Left" Margin="393,0,0,199" TextWrapping="Wrap" Text="Направление" VerticalAlignment="Bottom" Width="119" TextAlignment="Center"/>
-        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Margin="307,0,0,123" VerticalAlignment="Bottom" Width="100" Height="27" Click="buttonAdd_Click"/>
-        <GroupBox Header="Введите название" HorizontalAlignment="Left" Height="77" Margin="27,25" VerticalAlignment="Bottom" Width="228"/>
-        <Button x:Name="buttonSearch" Content="Поиск" HorizontalAlignment="Left" Margin="166,50" VerticalAlignment="Bottom" Width="75" Click="buttonSearch_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="275,0,0,199" TextWrapping="Wrap" Text="Рейтинг" VerticalAlignment="Bottom" Width="100" TextAlignment="Center">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="393,0,0,199" TextWrapping="Wrap" Text="Направление" VerticalAlignment="Bottom" Width="119" TextAlignment="Center">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Margin="307,0,0,123" VerticalAlignment="Bottom" Width="100" Height="27" Click="buttonAdd_Click">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
+        <GroupBox Header="Введите название" HorizontalAlignment="Left" Height="77" Margin="27,25" VerticalAlignment="Bottom" Width="228">
+            <GroupBox.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
+            </GroupBox.BorderBrush>
+            <GroupBox.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+            </GroupBox.Foreground>
+        </GroupBox>
+        <Button x:Name="buttonSearch" Content="Поиск" HorizontalAlignment="Left" Margin="166,50" VerticalAlignment="Bottom" Width="75" Click="buttonSearch_Click">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
         <TextBox x:Name="textBoxSearch" HorizontalAlignment="Left" Height="23" Margin="40,0,0,50" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="111"/>
-        <Button x:Name="buttonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="307,0,0,38" VerticalAlignment="Bottom" Width="100" Height="34" Click="buttonSave_Click"/>
-        <Button x:Name="buttonBack" Content="Назад" HorizontalAlignment="Left" Margin="430,0,0,38" VerticalAlignment="Bottom" Width="100" Height="34" Click="buttonBack_Click"/>
+        <Button x:Name="buttonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="307,0,0,38" VerticalAlignment="Bottom" Width="100" Height="34" Click="buttonSave_Click">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
+        <Button x:Name="buttonBack" Content="Назад" HorizontalAlignment="Left" Margin="430,0,0,38" VerticalAlignment="Bottom" Width="100" Height="34" Click="buttonBack_Click">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
 
 
     </Grid>

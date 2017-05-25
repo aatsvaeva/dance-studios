@@ -9,23 +9,75 @@
       Title="Авторизация" Height="599.531" Width="553.571">
 
     <Grid>
-        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Height="23" Margin="249,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="249,149,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="141,105,0,0" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" Height="23" Width="100"/>
-        <TextBlock HorizontalAlignment="Left" Margin="141,153,0,0" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top"/>
-        <Button x:Name="buttonEnter" Content="Вход" HorizontalAlignment="Left" Margin="166,207,0,0" VerticalAlignment="Top" Width="75" Click="buttonEnter_Click"/>
-        <GroupBox Header="Регистрация" HorizontalAlignment="Left" Height="281" Margin="53,287,0,0" VerticalAlignment="Top" Width="468"/>
-        <Button x:Name="buttonRegistration" Content="Регистрация" HorizontalAlignment="Left" Margin="233,521,0,0" VerticalAlignment="Top" Width="89" Click="buttonRegistration_Click"/>
-        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Height="23" Margin="302,345,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="buttonEnterAsGuest" Content="Войти как гость" HorizontalAlignment="Left" Margin="288,207,0,0" VerticalAlignment="Top" Width="106" Click="buttonEnterAsGuest_Click"/>
-        <TextBox x:Name="textBoxSurname" HorizontalAlignment="Left" Height="23" Margin="302,389,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="213,345,0,0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="213,389,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top"/>
-        <GroupBox Header="Вход" HorizontalAlignment="Left" Height="207" Margin="114,47,0,0" VerticalAlignment="Top" Width="308"/>
-        <TextBox x:Name="textBoxNewLogin" HorizontalAlignment="Left" Height="23" Margin="302,429,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="passwordBoxNew" HorizontalAlignment="Left" Margin="302,471,0,0" VerticalAlignment="Top" Width="120" Height="28"/>
-        <TextBlock HorizontalAlignment="Left" Margin="213,429,0,0" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="213,471,0,0" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top"/>
+        <Image Source="Images/ImageAuthorization.jpg" Margin="130,-71,133,386"/>
+        <Image Source="Images/ImageAuthorization1.jpg" Margin="109,126,100,386"></Image>
+        <GroupBox Header="Вход" Height="149" Margin="130,0,0,223" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="294" FontSize="20" FontFamily="Calibri Light">
+            <GroupBox.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
+            </GroupBox.BorderBrush>
+            <GroupBox.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+            </GroupBox.Foreground>
+        </GroupBox>
+        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Height="23" Margin="263,0,0,310" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" RenderTransformOrigin="0.533,-0.196"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="263,0,0,277" VerticalAlignment="Bottom" Width="120" Height="23"/>
+        <TextBlock HorizontalAlignment="Left" Margin="188,0,0,310" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Bottom" Height="22" Width="34" RenderTransformOrigin="0.647,1.545">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="180,0,0,284" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Bottom" RenderTransformOrigin="0.462,0.248">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <Button x:Name="buttonEnter" Content="Войти" HorizontalAlignment="Left" Margin="199,0,0,240" VerticalAlignment="Bottom" Width="75" Click="buttonEnter_Click" MouseEnter="buttonEnter_MouseEnter" MouseLeave="buttonEnter_MouseLeave">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
+        <GroupBox Header="Регистрация" Height="200" Margin="60,0,60,23" VerticalAlignment="Bottom" FontSize="20" FontFamily="Calibri Light">
+            <GroupBox.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
+            </GroupBox.BorderBrush>
+            <GroupBox.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+            </GroupBox.Foreground>
+        </GroupBox>
+        <Button x:Name="buttonRegistration" Content="Регистрация" HorizontalAlignment="Left" Margin="225,0,0,38" VerticalAlignment="Bottom" Width="110" Click="buttonRegistration_Click" MouseEnter="buttonRegistration_MouseEnter" MouseLeave="buttonRegistration_MouseLeave">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
+        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Height="23" Margin="263,0,0,160" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <Button x:Name="buttonEnterAsGuest" Content="Гость" HorizontalAlignment="Left" Margin="307,0,0,240" VerticalAlignment="Bottom" Width="76" Click="buttonEnterAsGuest_Click" RenderTransformOrigin="0.213,0.568" MouseEnter="buttonEnterAsGuest_MouseEnter" MouseLeave="buttonEnterAsGuest_MouseLeave">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
+        <TextBox x:Name="textBoxSurname" HorizontalAlignment="Left" Height="23" Margin="263,0,0,132" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="199,0,0,160" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Bottom" RenderTransformOrigin="0.448,0.06">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="172,0,0,132" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Bottom" RenderTransformOrigin="0.141,0.47">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBox x:Name="textBoxNewLogin" HorizontalAlignment="Left" Height="23" Margin="263,0,0,104" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <PasswordBox x:Name="passwordBoxNew" HorizontalAlignment="Left" Margin="263,0,0,76" VerticalAlignment="Bottom" Width="120" Height="23"/>
+        <TextBlock HorizontalAlignment="Left" Margin="188,0,0,104" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Bottom" RenderTransformOrigin="0.382,1.875">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="181,0,0,76" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Bottom" RenderTransformOrigin="0.293,1.406">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
 
     </Grid>
 </Page>

@@ -8,11 +8,44 @@
       Title="Танцевальные студии" Height="599.531" Width="553.571">
 
     <Grid>
-        <Button x:Name="buttonEdit" Content="Редактировать" Margin="27 70" VerticalAlignment="Bottom" Click="buttonEdit_Click" Height="31" HorizontalAlignment="Left" Width="123"/>
-        <ListBox x:Name="listBoxStudios" HorizontalAlignment="Left" Height="464" Margin="25,0,0,126" VerticalAlignment="Bottom" Width="503" FontSize="20" FontFamily="Arial"/>
-        <Button x:Name="buttonRefresh" Content="Обновить"  Margin="175 70" VerticalAlignment="Bottom" Height="31" Click="buttonRefresh_Click" HorizontalAlignment="Left" Width="123"/>
-        <TextBox x:Name="textBoxSearch" HorizontalAlignment="Right" Height="31" Margin="27 70" VerticalAlignment="Bottom" Width="133"/>
-        <Button x:Name="buttonSearch" Content="Поиск" HorizontalAlignment="Right" Margin="27 25" VerticalAlignment="Bottom" Width="108" Click="buttonSearch_Click" Height="33" RenderTransformOrigin="0.023,0.292"/>
+        <Image Source="Images/ImageDanceStudios.jpg" Margin="203,-2,-40,471"></Image>
+
+        <Button x:Name="buttonEdit" Content="Редактировать" Margin="27,0,0,70" VerticalAlignment="Bottom" Click="buttonEdit_Click" Height="31" HorizontalAlignment="Left" Width="132" MouseEnter="buttonEdit_MouseEnter" MouseLeave="buttonEdit_MouseLeave">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
+        <ListBox x:Name="listBoxStudios" HorizontalAlignment="Left" Height="340" Margin="25,0,0,131" VerticalAlignment="Bottom" Width="503" FontSize="17" FontFamily="Arial"/>
+        <Button x:Name="buttonRefresh" Content="Обновить"  Margin="175,0,0,70" VerticalAlignment="Bottom" Height="31" Click="buttonRefresh_Click" HorizontalAlignment="Left" Width="132" MouseEnter="buttonRefresh_MouseEnter" MouseLeave="buttonRefresh_MouseLeave">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
+        <TextBox x:Name="textBoxSearch" HorizontalAlignment="Right" Height="31" Margin="0,0,40,70" VerticalAlignment="Bottom" Width="133"/>
+        <Button x:Name="buttonSearch" Content="Поиск" HorizontalAlignment="Right" Margin="0,0,52,25" VerticalAlignment="Bottom" Width="108" Click="buttonSearch_Click" Height="33" RenderTransformOrigin="0.023,0.292">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
+        <TextBlock HorizontalAlignment="Left" Margin="25,21,0,0" TextWrapping="Wrap" Text="DANCE" VerticalAlignment="Top" Height="81" Width="326" FontSize="76" FontFamily="Century Gothic"/>
+        <Button x:Name="buttonBackToAuthorization" Content="Окно регистрации" HorizontalAlignment="Left" Margin="27,0,0,25" VerticalAlignment="Bottom" Width="132" Height="31" Click="buttonBackToAuthorization_Click" MouseEnter="buttonBackToAuthorization_MouseEnter" MouseLeave="buttonBackToAuthorization_MouseLeave">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
+        <Button x:Name="buttonToMasterClass" Content="Мастер классы" HorizontalAlignment="Left" Margin="175,544,0,0" VerticalAlignment="Top" Width="132" Height="31" Click="buttonToMasterClass_Click" MouseEnter="buttonToMasterClass_MouseEnter" MouseLeave="buttonToMasterClass_MouseLeave">
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
+            </Button.Foreground>
+        </Button>
+        <GroupBox Header="Введите название" HorizontalAlignment="Left" Height="111" Margin="364,0,0,15" VerticalAlignment="Bottom" Width="164">
+            <GroupBox.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
+            </GroupBox.BorderBrush>
+            <GroupBox.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+            </GroupBox.Foreground>
+        </GroupBox>
 
     </Grid>
 </Page>

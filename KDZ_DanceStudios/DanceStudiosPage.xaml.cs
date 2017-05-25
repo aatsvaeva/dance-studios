@@ -30,6 +30,7 @@ namespace KDZ_DanceStudios
             LoadData();
         }
 
+        //Методы
         private void RefreshListBox()
         {
             listBoxStudios.Items.Clear();
@@ -39,19 +40,6 @@ namespace KDZ_DanceStudios
             }
         }
 
-        private void buttonEdit_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(Pages.NewStudioPage);
-            Logging.Log("Открыто окно редактирования");
-        }
-
-        private void buttonRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            LoadData();
-            textBoxSearch.Clear();
-            Logging.Log("Обновлен список студий");
-
-        }
         private void SaveData()
         {
             using (FileStream filest = new FileStream("../../studio.dat", FileMode.Open))
@@ -86,11 +74,32 @@ namespace KDZ_DanceStudios
             RefreshListBox();
         }
 
+        //Кнопки
+        private void buttonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(Pages.NewStudioPage);
+            Logging.Log("Открыто окно редактирования");
+        }
+
+        private void buttonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            LoadData();
+            textBoxSearch.Clear();
+            Logging.Log("Обновлен список студий");
+
+        }
+
         private void buttonSearch_Click(object sender, RoutedEventArgs e)
         {
+            LoadData();
             for (int i = 0; i < _studios.Count; i++)
                 if (_studios[i].Name == textBoxSearch.Text)
-                    (listBoxStudios.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Background = Brushes.Plum;
+                {
+                    listBoxStudios.UpdateLayout();
+                    listBoxStudios.ScrollIntoView(listBoxStudios.Items[i]);
+                    (listBoxStudios.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Background = Brushes.LightGray;
+                    (listBoxStudios.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Focus();
+                }
                 else if (string.IsNullOrWhiteSpace(textBoxSearch.Text))
                 {
                     MessageBox.Show("Необходимо ввести название студии");
@@ -98,6 +107,60 @@ namespace KDZ_DanceStudios
                     return;
                 }
             Logging.Log("Выполнен поиск по названию студии");
+        }
+
+        private void buttonBackToAuthorization_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(Pages.Authorization);
+            Logging.Log("Переход на окно регистрации");
+        }
+
+        private void buttonToMasterClass_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(Pages.MasterClassPage);
+            Logging.Log("Переход на окно с информацией о мастер классах");
+        }
+
+
+        //Обработчики событий
+        private void buttonEdit_MouseEnter(object sender, MouseEventArgs e)
+        {
+            buttonEdit.FontSize = 14;
+        }
+
+        private void buttonEdit_MouseLeave(object sender, MouseEventArgs e)
+        {
+            buttonEdit.FontSize = 12;
+        }
+
+        private void buttonRefresh_MouseEnter(object sender, MouseEventArgs e)
+        {
+            buttonRefresh.FontSize = 14;
+        }
+
+        private void buttonRefresh_MouseLeave(object sender, MouseEventArgs e)
+        {
+            buttonRefresh.FontSize = 12;
+        }
+
+        private void buttonBackToAuthorization_MouseEnter(object sender, MouseEventArgs e)
+        {
+            buttonBackToAuthorization.FontSize = 14;
+        }
+
+        private void buttonBackToAuthorization_MouseLeave(object sender, MouseEventArgs e)
+        {
+            buttonBackToAuthorization.FontSize = 12;
+        }
+
+        private void buttonToMasterClass_MouseEnter(object sender, MouseEventArgs e)
+        {
+            buttonToMasterClass.FontSize = 14;
+        }
+
+        private void buttonToMasterClass_MouseLeave(object sender, MouseEventArgs e)
+        {
+            buttonToMasterClass.FontSize = 12;
         }
     }
 }

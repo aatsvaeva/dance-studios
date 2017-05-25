@@ -11,6 +11,7 @@ namespace KDZ_DanceStudios
         private static DanceStudiosPage _danceStudiosPage = new DanceStudiosPage();
         private static NewStudioPage _newStudioPage = new NewStudioPage();
         private static Authorization _authorization = new Authorization();
+        private static MasterClassPage _masterClassPage = new MasterClassPage();
 
         public static DanceStudiosPage DanceStudiosPage
         {
@@ -21,9 +22,15 @@ namespace KDZ_DanceStudios
         {
             get { return _newStudioPage; }
         }
+
         public static Authorization Authorization
         {
             get { return _authorization; }
+        }
+
+        public static MasterClassPage MasterClassPage
+        {
+            get { return _masterClassPage; }
         }
     }
 }
