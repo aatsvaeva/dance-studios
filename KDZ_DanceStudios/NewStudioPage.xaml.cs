@@ -207,9 +207,9 @@ namespace KDZ_DanceStudios
 
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
-            if (buttonSave.IsPressed)
-                NavigationService.Navigate(Pages.DanceStudiosPage);
-                Logging.Log("Переход на окно просмотра");
+            LoadData();
+            NavigationService.Navigate(Pages.DanceStudiosPage);
+            Logging.Log("Переход на окно просмотра");
         }
 
         //Обработчики событий
